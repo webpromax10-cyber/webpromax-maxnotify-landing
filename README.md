@@ -18,6 +18,7 @@ https://webpromax10-cyber.github.io/webpromax-maxnotify-landing/
 
 - `index.html` - page markup and content.
 - `styles.css` - visual styling and responsive layout.
+- `guide.css` - screenshot guide and screenshot modal styling.
 - `script.js` - screenshot modal, FAQ behavior, and contact form message.
 - `favicon.svg` - page icon.
 - `assets/` - MAX instruction screenshots.

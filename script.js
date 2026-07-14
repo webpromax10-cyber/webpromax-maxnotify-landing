@@ -53,6 +53,48 @@
     });
   }
 
+  const screenshotButtons = document.querySelectorAll('[data-fullscreen]');
+  if (screenshotButtons.length) {
+    const modal = document.createElement('div');
+    modal.className = 'screenshot-modal';
+    modal.hidden = true;
+    modal.innerHTML = `
+      <div class="screenshot-modal__inner" role="dialog" aria-modal="true" aria-label="Просмотр скриншота">
+        <button type="button" aria-label="Закрыть скриншот">×</button>
+        <img alt="">
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const modalImage = modal.querySelector('img');
+    const closeButton = modal.querySelector('button');
+
+    const closeScreenshot = () => {
+      modal.hidden = true;
+      body.classList.remove('screenshot-open');
+      modalImage.removeAttribute('src');
+    };
+
+    screenshotButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const image = button.querySelector('img');
+        modalImage.src = button.dataset.fullscreen;
+        modalImage.alt = image ? image.alt : 'Скриншот MAX';
+        modal.hidden = false;
+        body.classList.add('screenshot-open');
+        closeButton.focus();
+      });
+    });
+
+    closeButton.addEventListener('click', closeScreenshot);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeScreenshot();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.hidden) closeScreenshot();
+    });
+  }
+
   document.querySelectorAll('.faq-list details').forEach((item) => {
     item.addEventListener('toggle', () => {
       if (!item.open) return;
