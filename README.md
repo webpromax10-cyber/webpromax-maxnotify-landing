@@ -2,10 +2,16 @@
 
 Static informational landing page for the `Оповещение в MAX` Bitrix module.
 
-Public preview:
+Current public preview:
 
 ```text
 https://webpromax.ru/maxnotify/
+```
+
+GitHub Pages preview from `main`:
+
+```text
+https://top4an.github.io/webpromax-maxnotify-landing/
 ```
 
 ## Files
