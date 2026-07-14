@@ -1,538 +1,416 @@
 <!doctype html>
 <html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffffff">
-<title>Оповещение в MAX для 1С-Битрикс</title>
-<meta name="description" content="Заказы, заявки с форм и важные события из 1С-Битрикс — прямо в MAX. Подключение, настройка и проверка уведомлений под ключ.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script>document.documentElement.classList.add("js")</script>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="guide.css">
-</head>
-<body>
-<header class="site-header" id="top">
-<div class="header-inner">
-<a class="brand" href="#top" aria-label="Оповещение в MAX — на главную">
-<span class="logo-mark" aria-hidden="true">
-</span> <span class="brand-copy">
-<strong>Оповещение в MAX</strong> <small>для 1С-Битрикс</small> </span>
-</a>
-<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
-<span>
-</span>
-<span>
-</span>
-<span>
-</span> <span class="sr-only">Открыть меню</span>
-</button>
-<nav class="top-nav" id="main-nav" aria-label="Основная навигация">
-<a href="#features">Возможности</a> <a href="#token">Как получить токен</a> <a href="#setup">Как подключаем</a> <a href="#security">Безопасность</a> <a href="#faq">FAQ</a>
-</nav>
-<a class="header-phone" href="tel:+79883885444" aria-label="Позвонить +7 988 388 5444">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M7.1 3.7 4.8 5.3c-.7.5-1 1.4-.7 2.2 1.9 5.8 6.5 10.4 12.3 12.3.8.3 1.7 0 2.2-.7l1.6-2.3c.5-.7.4-1.7-.3-2.3l-2.4-2a2 2 0 0 0-2.4-.1l-1.7 1.1a16.2 16.2 0 0 1-3-3l1.1-1.7a2 2 0 0 0-.1-2.4l-2-2.4c-.6-.7-1.6-.8-2.3-.3Z">
-</path>
-</svg> <span>
-<strong>+7&nbsp;988&nbsp;388&nbsp;5444</strong> <small>MAX,&nbsp;Telegram,&nbsp;WhatsApp,&nbsp;звонок</small>
-</span>
-</a>
-</div>
-</header>
-<main>
-<section class="hero" aria-labelledby="hero-title">
-<div class="hero-orbit orbit-one" aria-hidden="true">
-</div>
-<div class="hero-orbit orbit-two" aria-hidden="true">
-</div>
-<div class="container hero-grid">
-<div class="hero-copy reveal">
-<p class="eyebrow">Модуль для 1С-Битрикс</p>
-<h1 id="hero-title">
-<span>Заказы и заявки</span> <span>из 1С-Битрикс —</span> <span>прямо в <em>MAX</em>
-</span>
-</h1>
-<p class="hero-lead">Модуль отправляет в MAX уведомления о новых заказах, заявках с форм и важных событиях магазина. Вы создаёте MAX-бота и передаёте данные для подключения, а мы устанавливаем модуль, настраиваем шаблоны и включаем отправку только после успешного теста.</p>
-<div class="hero-actions">
-<a class="button button-primary" href="#request">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M4 6.5h16v11H4z">
-</path>
-<path d="m5 7 7 5 7-5">
-</path>
-</svg> Оставить заявку </a>
-<a class="button button-secondary" href="#token">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<circle cx="8" cy="15" r="3">
-</circle>
-<path d="m10.2 12.8 6.9-6.9 2 2-1.4 1.4 1.2 1.2-2 2-1.2-1.2-3.3 3.3">
-</path>
-</svg> Как получить токен</a>
-</div>
-<p class="hero-note">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M12 3 5.5 5.8v5.5c0 4.2 2.6 7.8 6.5 9.7 3.9-1.9 6.5-5.5 6.5-9.7V5.8L12 3Z">
-</path>
-<path d="m9.2 12 1.8 1.8 3.8-4">
-</path>
-</svg> Токен не нужно указывать в форме заявки. Безопасный способ передачи согласуем отдельно.</p>
-</div>
-<div class="hero-visual reveal" role="img" aria-label="Пример интерфейса модуля и уведомления в MAX">
-<div class="visual-glow" aria-hidden="true">
-</div>
-<div class="dashboard-window">
-<div class="window-bar" aria-hidden="true">
-<i>
-</i>
-<i>
-</i>
-<i>
-</i>
-</div>
-<div class="dashboard-shell">
-<aside class="dashboard-sidebar">
-<div class="dashboard-brand">
-<span class="mini-logo" aria-hidden="true">
-</span> <span>
-<strong>Оповещение в MAX</strong>
-<small>для 1С-Битрикс</small>
-</span>
-</div>
-<nav aria-label="Демонстрационное меню">
-<span>
-<svg viewBox="0 0 24 24">
-<path d="m4 11 8-7 8 7v9h-5v-6H9v6H4Z">
-</path>
-</svg>Главная</span> <span class="active">
-<svg viewBox="0 0 24 24">
-<path d="M5 5h14v11H9l-4 3Z">
-</path>
-</svg>Чат-боты</span> <span>
-<svg viewBox="0 0 24 24">
-<path d="m4 12 16-7-5 14-3-5Z">
-</path>
-</svg>Каналы</span> <span>
-<svg viewBox="0 0 24 24">
-<path d="M6 4h12v16H6zM9 8h6M9 12h6M9 16h4">
-</path>
-</svg>Шаблоны</span> <span>
-<svg viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="3">
-</circle>
-<path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A8 8 0 0 0 15 6.2L14.7 4h-4L10.4 6.2a8 8 0 0 0-1.5.9l-2.4-1-2 3.4L6.6 11a7 7 0 0 0 0 2l-2.1 1.5 2 3.4 2.4-1a8 8 0 0 0 1.5.9l.3 2.2h4l.3-2.2a8 8 0 0 0 1.5-.9l2.4 1 2-3.4-2-1.5c.1-.3.1-.7.1-1Z">
-</path>
-</svg>Настройки</span>
-</nav>
-<span class="docs-link">
-<svg viewBox="0 0 24 24">
-<path d="M6 3h9l3 3v15H6zM15 3v4h4">
-</path>
-</svg>Документация</span>
-</aside>
-<div class="dashboard-content">
-<p class="breadcrumbs">Чат-боты&nbsp;&nbsp;/&nbsp;&nbsp;Магазин</p>
-<h2>Магазин</h2>
-<section class="settings-card">
-<div class="settings-heading">
-<strong>Подключение</strong> <span class="status">
-<i>
-</i> Подключено</span>
-</div>
-<label>Токен доступа</label>
-<div class="token-field">
-<span>f91a••••••••••••••••••••••d2c3</span>
-<svg viewBox="0 0 24 24">
-<path d="M8 8h11v11H8z">
-</path>
-<path d="M5 16H4V5h11v1">
-</path>
-</svg>
-</div>
-<div class="setting-row">
-<span>
-<strong>Групповые чаты</strong>
-<small>Добавление в групповые чаты разрешено</small>
-</span> <i class="toggle on">
-</i>
-</div>
-<strong class="templates-title">Шаблоны уведомлений</strong>
-<div class="template-row">
-<span>Новый заказ</span>
-<small>Включено</small>
-</div>
-<div class="template-row">
-<span>Заявка с формы</span>
-<small>Включено</small>
-</div>
-<div class="template-row">
-<span>Новый пользователь</span>
-<small class="muted-state">Выключено</small>
-</div>
-<button type="button" class="template-button">Настроить шаблоны</button>
-</section>
-</div>
-</div>
-</div>
-<div class="phone-mockup" role="img" aria-label="Уведомление о новом заказе в MAX">
-<div class="phone-frame">
-<div class="phone-island" aria-hidden="true">
-</div>
-<div class="phone-screen">
-<div class="phone-status">
-<span>9:41</span>
-<span>● ● ▰</span>
-</div>
-<div class="chat-header">
-<span class="back">‹</span> <span class="chat-avatar">M</span> <span>
-<strong>Магазин</strong>
-<small>бот</small>
-</span> <span class="chat-menu">•••</span>
-</div>
-<div class="chat-area">
-<article class="message-card">
-<strong>Новый заказ</strong>
-<p>Заказ №12547</p>
-<p>Сумма: 12 450 ₽</p>
-<p>Клиент: Иван Петров</p>
-<p>Телефон: +7 900 123-45-67</p>
-<a href="#request" tabindex="-1">Открыть в админке</a> <time>10:42</time>
-</article>
-</div>
-<div class="chat-input">
-<span>＋</span>
-<span>Сообщение</span>
-<span>◉</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="feature-band" id="features" aria-labelledby="features-title">
-<div class="container rail-layout">
-<div class="rail-title reveal">
-<span>
-</span>
-<h2 id="features-title">Возможности</h2>
-</div>
-<div class="feature-grid">
-<article class="feature-card reveal">
-<div class="feature-icon">
-<svg viewBox="0 0 24 24">
-<path d="M6 8a6 6 0 0 1 12 0v5l2 3H4l2-3Z">
-</path>
-<path d="M10 19h4">
-</path>
-</svg>
-</div>
-<h3>Уведомления в MAX</h3>
-<p>Новые заказы, заявки с форм и другие важные события приходят в MAX мгновенно.</p>
-</article>
-<article class="feature-card reveal">
-<div class="feature-icon">
-<svg viewBox="0 0 24 24">
-<path d="M5 5h14v10H9l-4 4Z">
-</path>
-<path d="M8 9h8M8 12h5">
-</path>
-</svg>
-</div>
-<h3>Настраиваемые шаблоны</h3>
-<p>Гибкие шаблоны сообщений для разных событий и типов данных.</p>
-</article>
-<article class="feature-card reveal">
-<div class="feature-icon">
-<svg viewBox="0 0 24 24">
-<circle cx="8" cy="9" r="3">
-</circle>
-<circle cx="16" cy="9" r="3">
-</circle>
-<path d="M3 20v-2a5 5 0 0 1 10 0v2M11 20v-2a5 5 0 0 1 10 0v2">
-</path>
-</svg>
-</div>
-<h3>Групповые чаты</h3>
-<p>Поддержка командных чатов для быстрой реакции сотрудников.</p>
-</article>
-<article class="feature-card reveal">
-<div class="feature-icon">
-<svg viewBox="0 0 24 24">
-<path d="M12 3 5 6v5c0 4.5 2.8 8.3 7 10 4.2-1.7 7-5.5 7-10V6Z">
-</path>
-<path d="m9 12 2 2 4-5">
-</path>
-</svg>
-</div>
-<h3>Безопасно и надёжно</h3>
-<p>Токен не передаётся через форму. Безопасный способ согласуем отдельно.</p>
-</article>
-<article class="feature-card reveal">
-<div class="feature-icon">
-<svg viewBox="0 0 24 24">
-<path d="M12 3 5 6v5c0 4.5 2.8 8.3 7 10 4.2-1.7 7-5.5 7-10V6Z">
-</path>
-<path d="M9 12h6M12 9v6">
-</path>
-</svg>
-</div>
-<h3>Только после теста</h3>
-<p>Мы включаем рабочую отправку только после успешной технической проверки.</p>
-</article>
-</div>
-</div>
-</section>
-<section class="process-section" id="setup" aria-labelledby="setup-title">
-<div class="container rail-layout process-layout">
-<div class="rail-title reveal">
-<span>
-</span>
-<h2 id="setup-title">Как подключаем</h2>
-</div>
-<div class="process-grid">
-<article class="process-step reveal">
-<div class="step-head">
-<span>01</span>
-</div>
-<div>
-<h3>Резервная точка</h3>
-<p>Перед рабочими изменениями делаем резервную копию сайта для вашей безопасности.</p>
-</div>
-</article>
-<article class="process-step reveal">
-<div class="step-head">
-<span>02</span>
-</div>
-<div>
-<h3>Проверка MAX API</h3>
-<p>Проверяем токен и подключение к MAX API, чтобы убедиться в корректной работе.</p>
-</div>
-</article>
-<article class="process-step reveal">
-<div class="step-head">
-<span>03</span>
-</div>
-<div>
-<h3>Запуск после теста</h3>
-<p>Настраиваем модуль и шаблоны, затем включаем уведомления после успешного теста.</p>
-</div>
-</article>
-</div>
-</div>
-</section>
-<section class="token-section" id="token" aria-labelledby="token-title">
-<div class="container token-grid">
-<div class="section-copy reveal">
-<p class="section-label">Как получить токен</p>
-<h2 id="token-title">Три понятных шага в интерфейсе MAX</h2>
-<p class="section-lead">Токен связывает MAX-бота с сайтом. Его не нужно отправлять через открытую форму — способ безопасной передачи согласуем отдельно.</p>
-<ol class="token-steps">
-<li>
-<span>1</span>
-<div>
-<strong>Создайте MAX-бота</strong>
-<p>Откройте раздел «Чат-боты», заполните основные данные и сохраните бота.</p>
-</div>
-</li>
-<li>
-<span>2</span>
-<div>
-<strong>Откройте расширенные настройки</strong>
-<p>Выберите созданного бота и перейдите к настройкам подключения.</p>
-</div>
-</li>
-<li>
-<span>3</span>
-<div>
-<strong>Скопируйте токен доступа</strong>
-<p>Нажмите иконку копирования рядом с полем и храните токен как пароль.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="token-demo reveal" role="img" aria-label="Демонстрация поля токена">
-<div class="demo-top">
-<span class="mini-logo">
-</span>
-<strong>MAX</strong>
-<small>Расширенные настройки</small>
-</div>
-<div class="demo-card">
-<p class="demo-breadcrumbs">Главная / Чат-боты / Магазин</p>
-<h3>Настройки подключения</h3>
-<label>Токен доступа</label>
-<div class="demo-token">
-<span>f91a••••••••••••••••••••••d2c3</span>
-<button type="button" aria-label="Скопировать демонстрационный токен">
-<svg viewBox="0 0 24 24">
-<path d="M8 8h11v11H8z">
-</path>
-<path d="M5 16H4V5h11v1">
-</path>
-</svg>
-</button>
-</div>
-<p>Используйте токен для подключения логики чат-бота и интеграции.</p>
-<div class="demo-row">
-<span>
-<strong>Добавление в групповые чаты</strong>
-<small>Бот сможет участвовать в групповых чатах</small>
-</span>
-<i class="toggle on">
-</i>
-</div>
-<div class="demo-success">
-<i>
-</i> Данные готовы для безопасного подключения</div>
-</div>
-</div>
-</div>
-<div class="container guide-screens reveal" aria-label="Скриншоты получения токена MAX">
-<article class="guide-screen">
-<div class="guide-screen-copy">
-<span>Шаг 1</span>
-<h3>Создайте MAX-бота</h3>
-<p>В разделе «Чат-боты» заполните название, ник, телефон и сайт, затем нажмите «Создать».</p>
-</div>
-<button class="screenshot-button" type="button" data-fullscreen="assets/max-create-bot.png" aria-label="Открыть скриншот создания MAX-бота">
-<img src="assets/max-create-bot.png" width="1280" height="600" loading="lazy" alt="Создание MAX-бота: поля названия, телефона, сайта и кнопка создания">
-<span>Открыть скриншот</span>
-</button>
-</article>
-<article class="guide-screen">
-<div class="guide-screen-copy">
-<span>Шаг 2</span>
-<h3>Откройте настройки</h3>
-<p>После создания бота перейдите в карточку и нажмите «Настроить», чтобы открыть расширенные параметры.</p>
-</div>
-<button class="screenshot-button" type="button" data-fullscreen="assets/max-open-settings.png" aria-label="Открыть скриншот перехода в настройки MAX-бота">
-<img src="assets/max-open-settings.png" width="1280" height="600" loading="lazy" alt="Список чат-ботов MAX и кнопка перехода в расширенные настройки">
-<span>Открыть скриншот</span>
-</button>
-</article>
-<article class="guide-screen">
-<div class="guide-screen-copy">
-<span>Шаг 3</span>
-<h3>Скопируйте токен</h3>
-<p>В расширенных настройках нажмите иконку копирования рядом с полем «Токен доступа».</p>
-</div>
-<button class="screenshot-button" type="button" data-fullscreen="assets/max-copy-token.png" aria-label="Открыть скриншот копирования токена MAX-бота">
-<img src="assets/max-copy-token.png" width="1280" height="600" loading="lazy" alt="Расширенные настройки MAX-бота и кнопка копирования токена доступа">
-<span>Открыть скриншот</span>
-</button>
-</article>
-</div>
-</section>
-<section class="security-section" id="security" aria-labelledby="security-title">
-<div class="container security-panel reveal">
-<div class="security-visual" aria-hidden="true">
-<div class="shield">
-<svg viewBox="0 0 80 92">
-<path d="M40 4 70 16v24c0 20-11.8 37.1-30 47C21.8 77.1 10 60 10 40V16Z">
-</path>
-<path d="m26 44 9 9 20-23">
-</path>
-</svg>
-</div>
-</div>
-<div class="security-copy">
-<p class="section-label">Безопасность</p>
-<h2 id="security-title">Доступы передаются аккуратно и используются только для подключения</h2>
-<p>Токен — это секретный ключ вашего бота. Мы не просим указывать его в форме и заранее согласуем безопасный канал передачи.</p>
-</div>
-<ul class="security-list">
-<li>
-<span>✓</span>Токен не запрашивается в форме заявки</li>
-<li>
-<span>✓</span>Работа выполняется через защищённые соединения</li>
-<li>
-<span>✓</span>Уведомления включаются только после теста</li>
-<li>
-<span>✓</span>Вы сохраняете контроль над доступами</li>
-</ul>
-</div>
-</section>
-<section class="request-section" id="request" aria-labelledby="request-title">
-<div class="container request-grid">
-<div class="request-copy reveal">
-<p class="section-label">Подключение под ключ</p>
-<h2 id="request-title">Подключим уведомления в MAX к вашему сайту</h2>
-<p>Опишите задачу — подготовим сообщение для WhatsApp. Токен в форму вставлять не нужно.</p>
-<a class="direct-phone" href="tel:+79883885444">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M7.1 3.7 4.8 5.3c-.7.5-1 1.4-.7 2.2 1.9 5.8 6.5 10.4 12.3 12.3.8.3 1.7 0 2.2-.7l1.6-2.3c.5-.7.4-1.7-.3-2.3l-2.4-2a2 2 0 0 0-2.4-.1l-1.7 1.1a16.2 16.2 0 0 1-3-3l1.1-1.7a2 2 0 0 0-.1-2.4l-2-2.4c-.6-.7-1.6-.8-2.3-.3Z">
-</path>
-</svg> <span>
-<small>Можно&nbsp;сразу&nbsp;позвонить</small>
-<strong>+7&nbsp;988&nbsp;388&nbsp;5444</strong>
-</span>
-</a>
-</div>
-<form class="request-form reveal" id="request-form">
-<div class="form-row">
-<label>Имя<input name="name" autocomplete="name" placeholder="Как к вам обращаться">
-</label> <label>Контакт<input type="tel" name="contact" autocomplete="tel" required placeholder="Телефон или мессенджер">
-</label>
-</div>
-<label>Адрес сайта<input type="url" name="site" inputmode="url" placeholder="https://example.ru">
-</label> <label>Что нужно подключить <select name="notifications">
-<option>Заказы и заявки с форм</option>
-<option>Только новые заказы</option>
-<option>Только заявки с форм</option>
-<option>Нужен индивидуальный сценарий</option>
-</select>
-</label> <label>Комментарий<textarea name="comment" rows="4" placeholder="Коротко опишите задачу">
-</textarea>
-</label> <button class="button button-primary" type="submit">Подготовить сообщение</button>
-<p class="form-status" id="form-status" role="status">
-</p>
-</form>
-</div>
-</section>
-<section class="faq-section" id="faq" aria-labelledby="faq-title">
-<div class="container faq-grid">
-<div class="section-copy reveal">
-<p class="section-label">FAQ</p>
-<h2 id="faq-title">Частые вопросы</h2>
-<p class="section-lead">Самое важное о подключении, токене и запуске уведомлений.</p>
-</div>
-<div class="faq-list reveal">
-<details open>
-<summary>Нужно ли разбираться в MAX API?</summary>
-<p>Нет. Вы создаёте бота и получаете токен, а техническую настройку и проверку выполняем мы.</p>
-</details>
-<details>
-<summary>Где взять токен?</summary>
-<p>В расширенных настройках созданного MAX-бота, в поле «Токен доступа».</p>
-</details>
-<details>
-<summary>Когда включаются рабочие уведомления?</summary>
-<p>Только после проверки подключения и успешного тестового сообщения в MAX.</p>
-</details>
-<details>
-<summary>Можно ли отправлять сообщения в несколько чатов?</summary>
-<p>Да, такой сценарий можно обсудить. Перед запуском мы проверим его отдельно.</p>
-</details>
-</div>
-</div>
-</section>
-</main>
-<footer class="site-footer">
-<div class="container footer-inner">
-<a class="brand" href="#top">
-<span class="logo-mark" aria-hidden="true">
-</span> <span class="brand-copy">
-<strong>Оповещение в MAX</strong>
-<small>для 1С-Битрикс</small>
-</span>
-</a>
-<p>Заказы и заявки из 1С-Битрикс — прямо в MAX</p>
-<a href="tel:+79883885444">+7&nbsp;988&nbsp;388&nbsp;5444</a>
-</div>
-</footer>
-<a class="mobile-cta" href="#request">Оставить заявку</a>
-<script src="script.js">
-</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Оповещения из 1С-Битрикс в MAX - модуль для заказов и заявок</title>
+    <meta
+      name="description"
+      content="Информационный лендинг модуля Оповещение в MAX: как создать MAX-бота, получить токен и подготовить подключение уведомлений из 1С-Битрикс."
+    >
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Оповещение в MAX">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>Оповещение в MAX</strong>
+          <small>для 1С-Битрикс</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Основная навигация">
+        <a href="#features">Возможности</a>
+        <a href="#token">Как получить токен</a>
+        <a href="#setup">Как подключаем</a>
+        <a href="#security">Безопасность</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-phone" href="tel:+79883885444">
+        <strong>+7 988 388 5444</strong>
+        <small>MAX, Telegram, WhatsApp, звонок</small>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/max-copy-token.png" alt="">
+        </div>
+        <div class="hero-content">
+          <p class="product-name">Оповещение в MAX</p>
+          <h1 id="hero-title">Заказы и заявки из 1С-Битрикс - прямо в MAX</h1>
+          <p class="hero-lead">
+            Модуль отправляет в MAX уведомления о новых заказах, заявках с форм и важных
+            событиях магазина. Вы создаете MAX-бота и передаете данные для подключения,
+            а мы устанавливаем модуль, настраиваем шаблоны и включаем отправку только
+            после успешного теста.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#request">Оставить заявку</a>
+            <a class="button button-secondary" href="#token">Как получить токен</a>
+          </div>
+          <p class="hero-note">
+            Токен не нужно указывать в форме заявки. Безопасный способ передачи согласуем отдельно.
+          </p>
+          <p class="hero-contact">
+            Связаться можно как удобно: MAX, Telegram, WhatsApp или звонок по номеру
+            <a href="tel:+79883885444">+7 988 388 5444</a>.
+          </p>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Контроль подключения">
+        <div>
+          <span class="trust-icon" aria-hidden="true">01</span>
+          <strong>Резервная точка</strong>
+          <p>перед рабочими изменениями</p>
+        </div>
+        <div>
+          <span class="trust-icon" aria-hidden="true">02</span>
+          <strong>Проверка MAX API</strong>
+          <p>до включения уведомлений</p>
+        </div>
+        <div>
+          <span class="trust-icon" aria-hidden="true">03</span>
+          <strong>Запуск после теста</strong>
+          <p>техническая проверка приходит в MAX</p>
+        </div>
+      </section>
+
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="section-kicker">Возможности</p>
+          <h2 id="features-title">Что можно получать в MAX</h2>
+          <p>
+            Страница показывает общий принцип. Точный список событий и состав сообщений
+            фиксируем перед настройкой конкретного сайта.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="icon-bubble" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M7 7h10l1 13H6L7 7Z"></path>
+                <path d="M9 7a3 3 0 0 1 6 0"></path>
+              </svg>
+            </div>
+            <h3>Новые заказы</h3>
+            <p>
+              Сумма, клиент, телефон, состав заказа, доставка и адрес - если эти
+              данные есть в заказе.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-bubble" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M5 4h14v16H5z"></path>
+                <path d="M8 8h8M8 12h8M8 16h5"></path>
+              </svg>
+            </div>
+            <h3>Заявки с форм</h3>
+            <p>
+              Обратный звонок, консультация, заявка на заказ и другие формы,
+              которые согласуем перед подключением.
+            </p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-bubble" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8L12 3Z"></path>
+              </svg>
+            </div>
+            <h3>Важные события</h3>
+            <p>
+              Дополнительные события магазина можно добавить, если они есть в
+              проекте и подходят для уведомлений.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section flow-section" aria-labelledby="flow-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">Схема</p>
+          <h2 id="flow-title">Как сайт передает уведомление в MAX</h2>
+        </div>
+        <div class="flow-line" aria-label="Цепочка отправки уведомления">
+          <div class="flow-item">
+            <span>1С-Битрикс</span>
+            <p>на сайте появляется заказ или заявка</p>
+          </div>
+          <div class="flow-item">
+            <span>Модуль</span>
+            <p>формирует сообщение по шаблону</p>
+          </div>
+          <div class="flow-item">
+            <span>MAX-бот</span>
+            <p>отправляет уведомление</p>
+          </div>
+          <div class="flow-item">
+            <span>MAX</span>
+            <p>вы видите событие без проверки админки</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split-section" aria-labelledby="roles-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">Подготовка</p>
+          <h2 id="roles-title">От вас - бот и токен. От нас - подключение и проверка</h2>
+        </div>
+        <div class="roles-grid">
+          <article class="role-panel">
+            <h3>Что делает клиент</h3>
+            <ol>
+              <li>Создает MAX-бота.</li>
+              <li>Открывает расширенные настройки.</li>
+              <li>Копирует токен доступа.</li>
+              <li>После настройки получает chat_id через Старт или /id.</li>
+            </ol>
+          </article>
+          <article class="role-panel dark">
+            <h3>Что делаем мы</h3>
+            <ol>
+              <li>Создаем резервную точку.</li>
+              <li>Устанавливаем модуль.</li>
+              <li>Проверяем токен через MAX API.</li>
+              <li>Настраиваем webhook и шаблоны.</li>
+              <li>Отправляем техническую проверку и включаем рабочую отправку.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="section guide-section" id="token" aria-labelledby="token-title">
+        <div class="section-heading">
+          <p class="section-kicker">Инструкция</p>
+          <h2 id="token-title">Как создать MAX-бота и получить токен</h2>
+          <p>
+            Скриншоты нужны как рабочая подсказка: где нажать, что заполнить и
+            где находится токен доступа.
+          </p>
+        </div>
+
+        <article class="guide-card">
+          <div class="guide-copy">
+            <span class="step-number">Шаг 1</span>
+            <h3>Создайте бота</h3>
+            <p>
+              Откройте раздел "Чат-боты", заполните название, ник, телефон
+              компании и сайт. При необходимости добавьте логотип и описание,
+              затем нажмите "Создать".
+            </p>
+          </div>
+          <button class="screenshot-button" type="button" data-fullscreen="assets/max-create-bot.png">
+            <img
+              src="assets/max-create-bot.png"
+              width="1280"
+              height="600"
+              loading="lazy"
+              alt="Создание MAX-бота: раздел Чат-боты, поля данных и кнопка Создать"
+            >
+            <span>Показать весь экран</span>
+          </button>
+        </article>
+
+        <article class="guide-card">
+          <div class="guide-copy">
+            <span class="step-number">Шаг 2</span>
+            <h3>Откройте расширенные настройки</h3>
+            <p>
+              В списке чат-ботов выберите созданного бота. В карточке
+              "Расширенные настройки" нажмите "Настроить".
+            </p>
+          </div>
+          <button class="screenshot-button" type="button" data-fullscreen="assets/max-open-settings.png">
+            <img
+              src="assets/max-open-settings.png"
+              width="1280"
+              height="600"
+              loading="lazy"
+              alt="Список MAX-чат-ботов и кнопка Настроить в расширенных настройках"
+            >
+            <span>Показать весь экран</span>
+          </button>
+        </article>
+
+        <article class="guide-card">
+          <div class="guide-copy">
+            <span class="step-number">Шаг 3</span>
+            <h3>Скопируйте токен доступа</h3>
+            <p>
+              В блоке "Чат-бот" найдите поле "Токен доступа" и нажмите иконку
+              копирования. Не публикуйте токен и не добавляйте его в скриншоты.
+            </p>
+          </div>
+          <button class="screenshot-button" type="button" data-fullscreen="assets/max-copy-token.png">
+            <img
+              src="assets/max-copy-token.png"
+              width="1280"
+              height="600"
+              loading="lazy"
+              alt="Расширенные настройки MAX-бота с полем Токен доступа и иконкой копирования"
+            >
+            <span>Показать весь экран</span>
+          </button>
+        </article>
+      </section>
+
+      <section class="section security-section" id="security" aria-labelledby="security-title">
+        <div class="security-panel">
+          <div class="security-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 11V8a5 5 0 0 1 10 0v3"></path>
+              <path d="M6 11h12v9H6z"></path>
+              <path d="M12 15v2"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="section-kicker">Безопасность</p>
+            <h2 id="security-title">Токен - секретный ключ вашего бота</h2>
+            <p>
+              Храните токен как пароль. Передавайте его только согласованному
+              специалисту через личный или защищенный канал.
+            </p>
+          </div>
+          <ul class="security-list">
+            <li>Не вставляйте токен в форму заявки.</li>
+            <li>Не отправляйте его в общий чат.</li>
+            <li>Не публикуйте в документах, скриншотах и комментариях.</li>
+            <li>Если токен случайно раскрыт, его нужно заменить.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section setup-section" id="setup" aria-labelledby="setup-title">
+        <div class="section-heading">
+          <p class="section-kicker light">Подключение</p>
+          <h2 id="setup-title">Как мы запускаем уведомления</h2>
+          <p>
+            Рабочая отправка включается только после технической проверки. Если
+            тест не прошел, уведомления остаются выключенными до устранения причины.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item"><span>01</span><p>Резервная точка перед изменениями</p></div>
+          <div class="timeline-item"><span>02</span><p>Установка модуля на сайт</p></div>
+          <div class="timeline-item"><span>03</span><p>Проверка токена через MAX API</p></div>
+          <div class="timeline-item"><span>04</span><p>Настройка webhook</p></div>
+          <div class="timeline-item"><span>05</span><p>Шаблоны заказов и форм</p></div>
+          <div class="timeline-item"><span>06</span><p>Техническая отправка в MAX</p></div>
+          <div class="timeline-item"><span>07</span><p>Включение рабочих уведомлений</p></div>
+        </div>
+      </section>
+
+      <section class="section ready-section" aria-labelledby="ready-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">Готовность</p>
+          <h2 id="ready-title">Что считается успешным подключением</h2>
+        </div>
+        <ul class="ready-list">
+          <li>Модуль установлен.</li>
+          <li>Бот связан с сайтом.</li>
+          <li>События и шаблоны настроены.</li>
+          <li>Тестовое сообщение получено в MAX.</li>
+          <li>Рабочая отправка включена после успешного теста.</li>
+        </ul>
+      </section>
+
+      <section class="section request-section" id="request" aria-labelledby="request-title">
+        <div class="request-copy">
+          <p class="section-kicker">Связаться</p>
+          <h2 id="request-title">Хотите подключить уведомления в MAX?</h2>
+          <p>
+            Оставьте заявку или напишите напрямую. Связаться можно как удобно:
+            MAX, Telegram, WhatsApp или обычный звонок по номеру +7 988 388 5444.
+          </p>
+          <div class="contact-links" aria-label="Контакты">
+            <a href="tel:+79883885444">Позвонить: +7 988 388 5444</a>
+            <a href="https://wa.me/79883885444" target="_blank" rel="noopener">Написать в WhatsApp</a>
+          </div>
+          <p class="form-note">
+            В форме нет поля для токена. Мы отдельно подскажем, как передать его безопасно.
+          </p>
+        </div>
+        <form class="request-form" id="request-form">
+          <label>
+            Имя
+            <input name="name" autocomplete="name" placeholder="Как к вам обращаться">
+          </label>
+          <label>
+            Контакт
+            <input name="contact" autocomplete="tel" placeholder="Телефон, MAX, Telegram или WhatsApp">
+          </label>
+          <label>
+            Адрес сайта
+            <input name="site" inputmode="url" placeholder="https://example.ru">
+          </label>
+          <label>
+            Какие уведомления нужны
+            <select name="notifications">
+              <option>Заказы и заявки с форм</option>
+              <option>Только новые заказы</option>
+              <option>Только заявки с форм</option>
+              <option>Обсудить индивидуально</option>
+            </select>
+          </label>
+          <label>
+            Комментарий
+            <textarea name="comment" rows="4" placeholder="Например: хотим получать заказы в MAX и Telegram"></textarea>
+          </label>
+          <button class="button button-primary" type="submit">Подготовить сообщение</button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading">
+          <p class="section-kicker">FAQ</p>
+          <h2 id="faq-title">Частые вопросы</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Нужно ли разбираться в MAX API?</summary>
+            <p>Нет. Клиент создает бота и получает токен, техническую настройку выполняем мы.</p>
+          </details>
+          <details>
+            <summary>Где взять токен?</summary>
+            <p>В расширенных настройках созданного MAX-бота, в поле "Токен доступа".</p>
+          </details>
+          <details>
+            <summary>Зачем нужен chat_id?</summary>
+            <p>Токен связывает сайт с ботом, а chat_id указывает, куда отправлять уведомления.</p>
+          </details>
+          <details>
+            <summary>Когда включаются уведомления?</summary>
+            <p>После технической проверки и успешного тестового сообщения в MAX.</p>
+          </details>
+          <details>
+            <summary>Можно ли отправлять в несколько чатов?</summary>
+            <p>Такой сценарий можно обсудить при подключении. Перед запуском проверяем его отдельно.</p>
+          </details>
+          <details>
+            <summary>Что делать, если интерфейс MAX изменился?</summary>
+            <p>Ориентируйтесь на разделы "Чат-боты", "Расширенные настройки" и "Токен доступа". При необходимости поможем по актуальному экрану.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Оповещение в MAX</span>
+      <a href="tel:+79883885444">+7 988 388 5444</a>
+    </footer>
+
+    <div class="image-modal" id="image-modal" aria-hidden="true" role="dialog" aria-label="Просмотр скриншота">
+      <button class="modal-close" type="button" aria-label="Закрыть">Закрыть</button>
+      <img src="" alt="">
+    </div>
+
+    <a class="mobile-cta" href="#request">Оставить заявку</a>
+
+    <script src="script.js"></script>
+  </body>
 </html>
