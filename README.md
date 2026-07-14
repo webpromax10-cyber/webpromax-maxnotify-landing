@@ -11,7 +11,7 @@ https://webpromax.ru/maxnotify/
 GitHub Pages preview from `main`:
 
 ```text
-https://top4an.github.io/webpromax-maxnotify-landing/
+https://webpromax10-cyber.github.io/webpromax-maxnotify-landing/
 ```
 
 ## Files
