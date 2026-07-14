@@ -1,72 +1,100 @@
-(function () {
-  const modal = document.querySelector("#image-modal");
-  const modalImage = modal ? modal.querySelector("img") : null;
-  const closeButton = modal ? modal.querySelector(".modal-close") : null;
+(() => {
+  const body = document.body;
+  const menuButton = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('#main-nav');
 
-  function openModal(src, alt) {
-    if (!modal || !modalImage) return;
-    modalImage.src = src;
-    modalImage.alt = alt || "Скриншот инструкции";
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-    closeButton && closeButton.focus();
+  const closeMenu = () => {
+    body.classList.remove('menu-open');
+    if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
+  };
+
+  if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
   }
 
-  function closeModal() {
-    if (!modal || !modalImage) return;
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-    modalImage.src = "";
+  const revealItems = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+    );
+    revealItems.forEach((item) => observer.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
-  document.querySelectorAll("[data-fullscreen]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const img = button.querySelector("img");
-      openModal(button.dataset.fullscreen, img ? img.alt : "");
+  const copyButton = document.querySelector('.demo-token button');
+  if (copyButton) {
+    copyButton.addEventListener('click', async () => {
+      const originalLabel = copyButton.getAttribute('aria-label') || 'Скопировать';
+      try {
+        await navigator.clipboard.writeText('Демонстрационный токен');
+        copyButton.setAttribute('aria-label', 'Скопировано');
+      } catch {
+        copyButton.setAttribute('aria-label', 'Демонстрация копирования');
+      }
+      window.setTimeout(() => copyButton.setAttribute('aria-label', originalLabel), 1800);
+    });
+  }
+
+  document.querySelectorAll('.faq-list details').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('.faq-list details').forEach((other) => {
+        if (other !== item) other.removeAttribute('open');
+      });
     });
   });
 
-  closeButton && closeButton.addEventListener("click", closeModal);
+  const form = document.querySelector('#request-form');
+  const status = document.querySelector('#form-status');
 
-  modal &&
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
-  });
-
-  const form = document.querySelector("#request-form");
-  const status = document.querySelector("#form-status");
-
-  form &&
-    form.addEventListener("submit", (event) => {
+  if (form) {
+    form.addEventListener('submit', (event) => {
       event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
       const data = new FormData(form);
-      const name = String(data.get("name") || "").trim();
-      const contact = String(data.get("contact") || "").trim();
-      const site = String(data.get("site") || "").trim();
-      const notifications = String(data.get("notifications") || "").trim();
-      const comment = String(data.get("comment") || "").trim();
+      const name = String(data.get('name') || '').trim();
+      const contact = String(data.get('contact') || '').trim();
+      const site = String(data.get('site') || '').trim();
+      const notifications = String(data.get('notifications') || '').trim();
+      const comment = String(data.get('comment') || '').trim();
 
       const message = [
-        "Здравствуйте. Хочу подключить модуль Оповещение в MAX.",
-        name ? `Имя: ${name}` : "",
-        contact ? `Контакт: ${contact}` : "",
-        site ? `Сайт: ${site}` : "",
-        notifications ? `Уведомления: ${notifications}` : "",
-        comment ? `Комментарий: ${comment}` : "",
+        'Здравствуйте. Хочу подключить модуль «Оповещение в MAX» для 1С-Битрикс.',
+        name ? `Имя: ${name}` : '',
+        contact ? `Контакт: ${contact}` : '',
+        site ? `Сайт: ${site}` : '',
+        notifications ? `Что подключить: ${notifications}` : '',
+        comment ? `Комментарий: ${comment}` : '',
       ]
         .filter(Boolean)
-        .join("\n");
+        .join('\n');
+
+      if (status) {
+        status.textContent = 'Открываем WhatsApp с подготовленным сообщением. Токен сюда вставлять не нужно.';
+      }
 
       const url = `https://wa.me/79883885444?text=${encodeURIComponent(message)}`;
-      if (status) {
-        status.textContent = "Откроем WhatsApp с подготовленным сообщением. Токен сюда вставлять не нужно.";
-      }
-      window.open(url, "_blank", "noopener");
+      window.open(url, '_blank', 'noopener,noreferrer');
     });
+  }
 })();
